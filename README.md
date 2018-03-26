@@ -42,7 +42,6 @@ if(typeof t!="function")throw new TypeError("Expected a function");return e=i(e)
 e=g.call(t,v);var n=t[v];try{t[v]=u;var r=true}catch(t){}var i=j.call(t);r&&(e?t[v]=n:delete t[v]),t=i}else t=j.call(t);e="[object Symbol]"==t}return e}function i(t){if(typeof t=="number")return t;if(r(t))return f;if(n(t)&&(t=typeof t.valueOf=="function"?t.valueOf():t,t=n(t)?t+"":t),typeof t!="string")return 0===t?t:+t;t=t.replace(a,"");var e=l.test(t);return e||p.test(t)?s(t.slice(2),e?2:8):c.test(t)?f:+t}var u,f=NaN,a=/^\s+|\s+$/g,c=/^[-+]0x[0-9a-f]+$/i,l=/^0b[01]+$/i,p=/^0o[0-7]+$/i,s=parseInt,b=typeof self=="object"&&self&&self.Object===Object&&self,y=typeof global=="object"&&global&&global.Object===Object&&global||b||Function("return this")(),d=(b=typeof exports=="object"&&exports&&!exports.nodeType&&exports)&&typeof module=="object"&&module&&!module.nodeType&&module,m=Object.prototype,g=m.hasOwnProperty,j=m.toString,v=(m=y.Symbol)?m.toStringTag:u,x=Math.max,O=Math.min,h=function(){
 return y.Date.now()};t.debounce=e,t.throttle=function(t,o,r){var i=true,u=true;if(typeof t!="function")throw new TypeError("Expected a function");return n(r)&&(i="leading"in r?!!r.leading:i,u="trailing"in r?!!r.trailing:u),e(t,o,{leading:i,maxWait:o,trailing:u})},t.isObject=n,t.isObjectLike=o,t.isSymbol=r,t.now=h,t.toNumber=i,t.VERSION="4.17.5",typeof define=="function"&&typeof define.amd=="object"&&define.amd?(y._=t, define(function(){return t})):d?((d.exports=t)._=t,b._=t):y._=t}).call(this);
 
-
 // debounced version of call for scroll and resize throttling
 var $images = $('img');
 var debouncedImpressionHandle = _.debounce(function(){
@@ -51,10 +50,16 @@ var debouncedImpressionHandle = _.debounce(function(){
 $(window).on('resize scroll', debouncedImpressionHandle);
         
 ```
-
-
+           
 ## Options
 
+- `fuzziness`: (default `1`) Percent of element height that has to be in viewport.  This allows an element to be only partially in the viewport before being considered in the viewport.  Valid values are 0 to 1 where 1 is 100% and 0.5 would be 50%.
+
+- `viewportTopAdjustment`: (default `0`) Adjustment to top of viewport to account for things like a floating header or fixed ads so that only content elements below the ads will be considered within the viewport.
+
+- `viewportBottomAdjustment`: (default `0`) Adjustment to bottom of viewport to account for things like fixed ads.  
+
+- `complete`: (default `null`) Callback to be called for each element within the viewport.
 
 
 ## License
